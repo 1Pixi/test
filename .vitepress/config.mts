@@ -4,6 +4,10 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Pixi Docs",
   description: "Dokumentacja skryptów FiveM",
+
+  head: [
+      ['link', { rel: 'icon', href: 'favicon.png' }]
+  ],
   
   // TO JEST KLUCZOWE DLA GITHUB PAGES:
   base: '/pixi/', 
