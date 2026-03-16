@@ -6,7 +6,7 @@ export default defineConfig({
   description: "Dokumentacja skryptów FiveM",
   
   // TO JEST KLUCZOWE DLA GITHUB PAGES:
-  base: '/test/', 
+  base: '/pixi/', 
   
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
