@@ -30,7 +30,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/1Pixi/test' } // Podlinkowałem tutaj Twoje repo
+      { icon: 'github', link: 'https://github.com/playfulpixi/pixi' } // Podlinkowałem tutaj Twoje repo
     ]
   }
 })
