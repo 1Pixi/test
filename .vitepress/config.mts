@@ -4,6 +4,10 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Pixi Docs",
   description: "Dokumentacja skryptów FiveM",
+  
+  // TO JEST KLUCZOWE DLA GITHUB PAGES:
+  base: '/test/', 
+  
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -22,7 +26,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/1Pixi/test' } // Podlinkowałem tutaj Twoje repo
     ]
   }
 })
