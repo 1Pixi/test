@@ -1,0 +1,582 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Colors
+ *
+ * Each colors have exact same color scale system with 3 levels of solid
+ * colors with different brightness, and 1 soft color.
+ *
+ * - `XXX-1`: The most solid color used mainly for colored text. It must
+ *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ *
+ * - `XXX-2`: The color used mainly for hover state of the button.
+ *
+ * - `XXX-3`: The color for solid background, such as bg color of the button.
+ *   It must satisfy the contrast ratio with pure white (#ffffff) text on
+ *   top of it.
+ *
+ * - `XXX-soft`: The color used for subtle background such as custom container
+ *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
+ *   on top of it.
+ *
+ *   The soft color must be semi transparent alpha channel. This is crucial
+ *   because it allows adding multiple "soft" colors on top of each other
+ *   to create a accent, such as when having inline code block inside
+ *   custom containers.
+ *
+ * - `default`: The color used purely for subtle indication without any
+ *   special meanings attached to it such as bg color for menu hover state.
+ *
+ * - `brand`: Used for primary brand colors, such as link text, button with
+ *   brand theme, etc.
+ *
+ * - `tip`: Used to indicate useful information. The default theme uses the
+ *   brand color for this by default.
+ *
+ * - `warning`: Used to indicate warning to the users. Used in custom
+ *   container, badges, etc.
+ *
+ * - `danger`: Used to show error, or dangerous message to the users. Used
+ *   in custom container, badges, etc.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-default-1: var(--vp-c-gray-1);
+  --vp-c-default-2: var(--vp-c-gray-2);
+  --vp-c-default-3: var(--vp-c-gray-3);
+  --vp-c-default-soft: var(--vp-c-gray-soft);
+
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: var(--vp-c-brand-soft);
+
+  --vp-c-warning-1: var(--vp-c-yellow-1);
+  --vp-c-warning-2: var(--vp-c-yellow-2);
+  --vp-c-warning-3: var(--vp-c-yellow-3);
+  --vp-c-warning-soft: var(--vp-c-yellow-soft);
+
+  --vp-c-danger-1: var(--vp-c-red-1);
+  --vp-c-danger-2: var(--vp-c-red-2);
+  --vp-c-danger-3: var(--vp-c-red-3);
+  --vp-c-danger-soft: var(--vp-c-red-soft);
+
+  --vp-local-search-result-bg: var(--vp-c-bg-soft);
+  --vp-local-search-result-border: var(--vp-c-divider);
+  --vp-local-search-result-selected-bg: var(--vp-c-brand-soft);
+  --vp-local-search-result-selected-border: var(--vp-c-brand-1);
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+
+  --pixi-red: #d14936;
+  --pixi-red-rgb: 209, 73, 54; /* Do przezroczystości */
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bd34fe 30%,
+    #41d1ff
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #bd34fe 50%,
+    #47caff 50%
+  );
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: var(--vp-c-text-1);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+/**
+ * 1. PODSTAWY: Usuwanie zaznaczania i ustawienie kursora
+ */
+.VPSidebar, .VPNavBar {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+}
+
+.VPSidebarItem .item {
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    margin: 1px 8px !important;
+    padding: 4px 10px !important;
+    font-size: 14px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+/* 2. ZEROWANIE teł dla dzieci (linki/teksty), aby nie tworzyły własnych boxów */
+.VPSidebarItem .link, 
+.VPSidebarItem .text {
+    background-color: transparent !important;
+    cursor: pointer !important;
+    
+}
+
+/* 3. HOVER działa WYŁĄCZNIE na .item (cały pasek) */
+.VPSidebarItem .item:hover {
+    background-color: var(--vp-sidebar-hover-bg) !important;
+}
+
+/* 4. AKTYWNY ELEMENT - stosujemy do .item, żeby podświetlić cały wiersz */
+.VPSidebarItem .item.is-active,
+.VPSidebarItem .link.is-active {
+    background-color: var(--vp-c-brand-soft) !important;
+    color: var(--vp-c-brand-1) !important;
+    font-weight: 600;
+}
+
+/**
+ * 4. AKTYWNY ELEMENT: Wyraźne zaznaczenie
+ */
+.VPSidebarItem.is-active .VPLink {
+    background-color: var(--vp-c-brand-soft) !important;
+    color: var(--vp-c-brand-1) !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    padding: 4px 12px !important; /* Dodajemy trochę miejsca wokół tekstu */
+    display: block !important;    /* Upewniamy się, że tło zajmuje całą szerokość */
+}
+
+.VPSidebarItem.level-0 {
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-top: none !important; /* Przy okazji upewniamy się, że nie ma kresek */
+}
+
+/* Opcjonalnie: Jeśli nadal widoczne są jakieś linie między sekcjami */
+.group + .group {
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/**
+ * 5. ZMIENNE KOLORÓW (Light / Dark mode)
+ */
+:root {
+    --vp-sidebar-hover-bg: rgba(0, 0, 0, 0.08); /* Jasny motyw */
+}
+
+.dark {
+    --vp-sidebar-hover-bg: rgba(255, 255, 255, 0.06); /* Ciemny motyw */
+}
+
+/**
+ * 6. STRZAŁKI ROZWIJANIA
+ */
+.VPSidebarItem .caret {
+    opacity: 0.6;
+    transition: transform 0.3s ease;
+}
+
+.VPSidebarItem .caret:hover {
+    opacity: 1;
+}
+
+/**
+ * 7. KOMPONENTY (Dla pewności zachowania spójności)
+ */
+.DocSearch {
+    --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
+
+/* --- Profesjonalne Ikony Języków w Menu --- */
+
+/* 1. Stylowanie linków w rozwijanym menu */
+.VPMenu .v-list-item__content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+a[href="#pl"], a[href="#en"] {
+    font-size: 0 !important; /* Sprawia, że tekst znika, ale kontener zostaje */
+    color: transparent !important;
+}
+
+a[href="#pl"]::after {
+    content: "Polski";
+    font-size: 14px; /* Przywracamy normalny rozmiar czcionki */
+    color: var(--vp-c-text-1);
+    margin-left: 8px;
+}
+
+a[href="#en"]::after {
+    content: "English";
+    font-size: 14px;
+    color: var(--vp-c-text-1);
+    margin-left: 8px;
+}
+
+/* 2. Tworzymy ikony flag za pomocą pseudoelementów ::before */
+a[href="#pl"]::before,
+a[href="#en"]::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; /* Okrągłe flagi */
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    flex-shrink: 0;
+}
+
+/* Flaga Polski */
+a[href="#pl"]::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg');
+}
+
+/* Flaga USA (English) */
+a[href="#en"]::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg');
+}
+
+/* 3. Podświetlenie aktywnego języka */
+html:not(.lang-en) a[href="#pl"] {
+    color: var(--vp-c-brand-1) !important;
+    font-weight: 600 !important;
+}
+
+html.lang-en a[href="#en"] {
+    color: var(--vp-c-brand-1) !important;
+    font-weight: 600 !important;
+}
+
+/* Efekt najechania na opcję języka */
+.VPMenu a:hover::before {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* 4. Logika ukrywania/pokazywania treści (zostaje bez zmian) */
+.en { display: none !important; }
+.pl { display: inline; }
+
+html.lang-en .pl { display: none !important; }
+html.lang-en .en { display: inline !important; }
+html.lang-en div.en, html.lang-en p.en { display: block !important; }
+
+.sidebar-footer, 
+.lang-link, 
+.divider {
+    display: none !important;
+}
+
+/* --- NOWOCZESNA NAWIGACJA DOLNA --- */
+.VPDocFooter .prev-next {
+    border-top: 1px solid var(--vp-c-divider) !important;
+    margin-top: 64px !important;
+    padding-top: 32px !important;
+    display: flex !important;
+    flex-direction: row !important; /* Przywracamy układ poziomy */
+    gap: 24px !important;
+    width: 100% !important;
+}
+
+.VPDocFooter .prev-next a {
+    /* Usuwamy sztywne wymiary z Twojego screena */
+    flex: 1 !important;
+    width: auto !important;
+    min-height: 100px !important; /* Wyższe, by miały oddech */
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 24px !important;
+    border-radius: 12px !important;
+    background: var(--vp-c-bg-soft) !important;
+    border: 1px solid var(--vp-c-gutter) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Efekt Hover - jak w Ox Lib */
+.VPDocFooter .prev-next a:hover {
+    border-color: #00a2ed !important;
+    background: rgba(0, 162, 237, 0.05) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Stylizacja napisów */
+.VPDocFooter .prev-next .desc {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 800 !important;
+    color: var(--vp-c-text-2) !important;
+    margin-bottom: 8px !important;
+}
+
+.VPDocFooter .prev-next .title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #00a2ed !important; /* Kolor przewodni Pixi */
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+/* Stałe strzałki (zawsze widoczne) */
+.VPDocFooter .pager-link.prev .title::before {
+    content: "←";
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.VPDocFooter .pager-link.next .title::after {
+    content: "→";
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+/* Animacja strzałek na hover */
+.VPDocFooter .pager-link.prev:hover .title::before { transform: translateX(-6px); }
+.VPDocFooter .pager-link.next:hover .title::after { transform: translateX(6px); }
+
+/* Wyrównanie dla 'Next' do prawej */
+.VPDocFooter .pager-link.next {
+    align-items: flex-end !important;
+    text-align: right !important;
+}
+
+/* ============================================================
+   STYLIZACJA GÓRNEGO PASKA (NAVBAR SEPARATOR)
+   ============================================================ */
+/* 1. Najpierw czyścimy wszystkie domyślne linie, aby nie było "nadkreśleń" */
+.VPNav, 
+.VPNavBar, 
+.VPNav.has-sidebar {
+    border-bottom: none !important;
+}
+
+/* 2. Nakładamy jedną, czystą linię tylko na główny pasek nawigacji */
+.VPNav {
+    border-bottom: 1px solid var(--pixi-red) !important;
+}
+
+/* 3. Zapewniamy spójność w trybie ciemnym i jasnym */
+html.dark .VPNav {
+    border-bottom: 1px solid var(--pixi-red) !important;
+}
+
+/* Całkowite ukrycie przycisku przełączania widoku szczegółowego */
+.VPLocalSearchBox .search-actions button.toggle-layout-button.detailed-list {
+    display: none !important;
+}
+
+/* Opcjonalnie: upewnij się, że ikona wewnątrz przycisku również nie zajmuje miejsca */
+.VPLocalSearchBox .search-actions .vpi-layout-list {
+    display: none !important;
+}
+
+/* Całkowite usunięcie przycisku X z paska wyszukiwania */
+.VPLocalSearchBox .search-bar .clear-button {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Opcjonalne: dopasowanie paddingu, aby tekst nie nachodził na puste miejsce po X */
+.VPLocalSearchBox .search-input {
+    padding-right: 12px !important;
+}
+
+/* Usunięcie domyślnego przycisku czyszczenia w przeglądarkach (WebKit) */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* ============================================================
+   EKSTRAWAGANCKIE WYNIKI WYSZUKIWANIA (SEARCH RESULTS)
+   ============================================================ */
+
+/* 1. Stylizacja pojedynczego wyniku jako karty */
+.VPLocalSearchBox .result {
+    display: flex;
+    flex-direction: column;
+    padding: 16px !important;
+    margin-bottom: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 2. Oddzielenie tytułu od opisu (Separator) */
+.VPLocalSearchBox .result .titles {
+    border-bottom: 1px solid rgba(var(--pixi-red-rgb), 0.2);
+    padding-bottom: 8px !important;
+    margin-bottom: 10px !important;
+    position: relative;
+}
+
+/* 3. Stylizacja tytułu (Pogrubienie i kolor Pixi) */
+.VPLocalSearchBox .result .title {
+    color: var(--pixi-red) !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+}
+
+/* 4. Stylizacja opisu (Excerpt wrapper) */
+.VPLocalSearchBox .result .excerpt-wrapper {
+    color: var(--vp-c-text-2) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+}
+
+/* 5. EFEKT "GLOW" DLA AKTYWNEGO WYNIKU (Zaznaczonego) */
+.VPLocalSearchBox .result[aria-selected="true"] {
+    background: rgba(var(--pixi-red-rgb), 0.08) !important;
+    border-color: var(--pixi-red) !important;
+    box-shadow: 0 0 15px rgba(var(--pixi-red-rgb), 0.25) !important;
+    transform: scale(1.01);
+}
+
+/* Podświetlenie szukanej frazy wewnątrz karty */
+.VPLocalSearchBox .result mark {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: rgb(255, 100, 208) !important;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Kontener kodu */
+.vp-doc [class*='language-'] {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Nowy, elegancki przycisk Copy */
+.vp-doc [class*='language-'] > button.copy {
+    top: 12px;
+    right: 12px;
+    width: auto; /* Szerokość dostosuje się do tekstu */
+    height: 32px;
+    padding: 0 12px;
+    background: transparent;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+    border-radius: 6px;
+    color: #e67e22;
+    opacity: 0; /* Ukryty domyślnie */
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Napis wewnątrz przycisku - jeden obok drugiego */
+.vp-doc [class*='language-'] > button.copy::before {
+    content: 'COPY';
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Pojawianie się przy najechaniu na blok kodu */
+.vp-doc [class*='language-']:hover > button.copy {
+    opacity: 1;
+}
+
+/* Efekt po najechaniu na sam przycisk */
+.vp-doc [class*='language-'] > button.copy:hover {
+    background: var(--pixi-red);
+    color: #fff;
+    border-color: #e67e22;
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
+}
+
+/* Stan po skopiowaniu */
+.vp-doc [class*='language-'] > button.copy.copied::before {
+    content: 'COPIED!';
+}
+.vp-doc [class*='language-'] > button.copy.copied {
+    background: var(--pixi-red);
+    border-color: var(--pixi-red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+}
+
+/* 1. Usunięcie napisu "On this page" */
+.VPDocAsideOutline .outline-title {
+    display: none !important;
+}
+
+/* 2. Usunięcie pionowego paska progresu */
+.VPDocAsideOutline .content {
+    border-left: none !important; /* Usuwa główną szarą linię */
+}
+
+.VPDocAsideOutline .outline-marker {
+    display: none !important; /* Usuwa pomarańczowy marker, który "jeździ" po linii */
+}
+
+/* 3. Dosunięcie linków do lewej krawędzi (skoro nie ma już paska) */
+.VPDocAsideOutline .outline-link {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* 4. Usunięcie zbędnych odstępów na górze */
+.VPDocAsideOutline .content {
+    padding-top: 0 !important;
+}
